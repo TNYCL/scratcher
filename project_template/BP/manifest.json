@@ -1,0 +1,39 @@
+{
+    "format_version": 1,
+    "header": {
+        "name": "pack.name",
+        "description": "pack.description",
+        "uuid": "6ed53c6a-0553-48eb-b1d5-33ce3e4148ee",
+        "version": [
+            1,
+            0,
+            0
+        ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "c5187bb2-ba22-462f-b9ff-cc0b94ae4656",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "version": [
+                1,
+                0,
+                0
+            ],
+            "uuid": "4112331f-9c8d-435a-af06-370192555f98"
+        }
+    ],
+    "metadata": {
+        "authors": [
+            "TNYCL"
+        ]
+    }
+}
