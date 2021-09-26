@@ -1,5 +1,3 @@
-from json.decoder import JSONDecoder
-from json.encoder import JSONEncoder
 from util import uuid
 import shutil
 import os
@@ -47,7 +45,7 @@ def manifest():
             data["header"]["uuid"] = str(uuid.dependencies)
             data["metadata"]["authors"][0] = pauthor
             json.dump(data, open(rp, "w"), indent=4)
-    except JSONEncoder and Exception as error:
+    except Exception:
         print('ERROR: in manifest() function. (Error #1)')
 
 def text():
