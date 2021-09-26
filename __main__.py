@@ -1,4 +1,3 @@
-from handler import input
-from handler import check
+from handler import input, check
 
 if(check.download()): input.runtask()
