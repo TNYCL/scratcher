@@ -5,6 +5,11 @@ import json
 import codecs
 from util import file
 
+def runoutput():
+    manifest()
+    text()
+    installer()
+
 def duplicatefolder(project_name, author="TNYCL"):
     global pname
     global pauthor
@@ -13,7 +18,7 @@ def duplicatefolder(project_name, author="TNYCL"):
     global dest
     pname = project_name
     pauthor = author
-    src = "project_template"
+    src = "template"
     dest = os.getcwd() + "/projects/" + pname + "/"
     behavior = dest + pname + " BP/"
     resource = dest + pname + " RP/"
@@ -21,11 +26,12 @@ def duplicatefolder(project_name, author="TNYCL"):
         shutil.copytree(src, dest)
         os.rename(dest + "/BP", behavior)
         os.rename(dest + "/RP", resource)
-        manifest()
-        text()
-    except FileExistsError:
+        runoutput()
+    except FileExistsError as err:
+        print(err)
         print("This project template already have.")
         file.openfolder(dest)
+
 
 def manifest():
     try:
@@ -45,8 +51,10 @@ def manifest():
             data["header"]["uuid"] = str(uuid.dependencies)
             data["metadata"]["authors"][0] = pauthor
             json.dump(data, open(rp, "w"), indent=4)
-    except Exception:
-        print('ERROR: in manifest() function. (Error #1)')
+    except Exception as err:
+        print(err)
+        print("ERROR: in manifest() function. (Error #1)")
+
 
 def text():
     try:
@@ -61,10 +69,26 @@ def text():
             data = file.readlines()
             data[0] = "pack.name=§e{} RP\n".format(pname)
             data[1] = "pack.description=§6by {}\n".format(pauthor)
-            edited_files = codecs.open(rp, 'w', 'utf-8')
+            edited_files = codecs.open(rp, "w", "utf-8")
             edited_files.writelines(data)
             edited_files.close()
-    except Exception:
-        print('ERROR: in text() function. (Error #2)')
-        
-        
+    except Exception as err:
+        print(err)
+        print("ERROR: in text() function. (Error #2)")
+
+def installer():
+    try:
+        installer = dest + 'install.bat'
+        with codecs.open(installer, "a", "utf-8") as file:
+            data = file
+            data.write('@echo off\n')
+            data.write('title\n')
+            data.write('cls\n')
+            data.write('echo A | xcopy "%CD%\{} BP" "%UserProfile%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\{} BP" /s /e /I\n'.format(pname, pname))
+            data.write('echo A | xcopy "%CD%\{} RP" "%UserProfile%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_resource_packs\{} RP" /s /e /I\n'.format(pname, pname))
+            data.write('cls\n')
+            data.write('echo Install completed.\n')
+            data.write('PAUSE')
+    except Exception as err:
+        print(err)
+        print('ERROR: in installer() function. (Error #4)')

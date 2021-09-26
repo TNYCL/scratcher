@@ -1,3 +1,4 @@
-import input
+from handler import input
+from handler import check
 
-input.runTask()
+if(check.download()): input.runtask()
