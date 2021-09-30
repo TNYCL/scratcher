@@ -5,6 +5,8 @@ def runtask():
     author = input("Author: ")
     try:
         output.duplicatefolder(project_name, author)
+        print('Success.')
     except KeyError as err:
         print(err)
         print("Wrong template file values.")
+        exit()

@@ -27,10 +27,10 @@ def duplicatefolder(project_name, author="TNYCL"):
         os.rename(dest + "/BP", behavior)
         os.rename(dest + "/RP", resource)
         runoutput()
-    except FileExistsError as err:
-        print(err)
+    except FileExistsError:
         print("This project template already have.")
         file.openfolder(dest)
+        exit()
 
 
 def manifest():
@@ -54,6 +54,7 @@ def manifest():
     except Exception as err:
         print(err)
         print("ERROR: in manifest() function. (Error #1)")
+        exit()
 
 
 def text():
@@ -75,6 +76,7 @@ def text():
     except Exception as err:
         print(err)
         print("ERROR: in text() function. (Error #2)")
+        exit()
 
 def installer():
     try:
@@ -92,3 +94,4 @@ def installer():
     except Exception as err:
         print(err)
         print('ERROR: in installer() function. (Error #4)')
+        exit()
