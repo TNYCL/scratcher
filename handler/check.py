@@ -2,7 +2,7 @@ from os import path
 import os
 import ssl
 from io import BytesIO
-from urllib.request import urlopen 
+from urllib.request import urlopen
 from zipfile import ZipFile
 
 zip_url = "https://cdn.tnycl.com/scratcher/template.zip"
